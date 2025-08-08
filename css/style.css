@@ -50,9 +50,30 @@ button{
     border-radius: 4px;
     background-color: blueviolet;
     transition: 1ms;
+    margin: 4px 0;
+    color: white;
 }
 button:hover{
     background-color: darkviolet;
     transform: scale(1.01);
     letter-spacing: 0.5px;
+    cursor: pointer;
 }
+#search-t, #search-c{
+    width: 48%;
+    margin-right: 10px;
+    border-radius: 15px;
+    height: 40px;
+}
+table{
+    width: 100%;
+    text-align: center;
+    margin: 10px 0px;
+}
+th{
+    background-color: #472c44;
+    margin: 10px 5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+

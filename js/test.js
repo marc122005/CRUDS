@@ -1,0 +1,89 @@
+let title = document.getElementById("title");
+let total = document.getElementById("total");
+let category = document.getElementById("category");
+let price = document.getElementById("price");
+let taxces = document.getElementById("taxces");
+let ads = document.getElementById("ads");
+let discount = document.getElementById("discount");
+let count = document.getElementById("count");
+let submit = document.getElementById("submit");
+
+function gettotal(){
+    console.log("gettotal function called");
+    if(price.value != "" ){
+        total.innerHTML = +price.value + +taxces.value + +ads.value - +discount.value;
+        total.style.backgroundColor = "green";
+    }else{
+        total.innerHTML = "";
+        total.style.backgroundColor = "red";
+    }
+}
+
+function cleardata(){
+    title.value = "";
+    price.value = "";
+    taxces.value = "";
+    ads.value = "";
+    discount.value = "";
+    count.value = "";
+    category.value = "";
+    total.innerHTML = "";
+}
+
+let dataPro;
+if(localStorage.getItem("products") == null){
+    dataPro = [];
+}else{
+    dataPro = JSON.parse(localStorage.getItem("products"));
+}
+
+submit.onclick = function(){
+    if(title.value != "" && price.value != "" && taxces.value != "" && ads.value != "" && discount.value != "" && count.value != "" && category.value != ""){
+        dataPro.push({
+            title: title.value,
+            price: price.value,
+            taxces: taxces.value,
+            ads: ads.value,
+            total: total.innerHTML,
+            discount: discount.value,
+            count: count.value,
+            category: category.value
+        });
+        localStorage.setItem("products", JSON.stringify(dataPro));
+        console.log(dataPro);
+        cleardata();
+        showdata();
+    }
+}
+
+function showdata() {
+    let table = '';
+    for (let i = 0; i < dataPro.length; i++) {
+        table += `
+            <tr>
+                <td>${i + 1}</td>
+                <td>${dataPro[i].title}</td>
+                <td>${dataPro[i].price}</td>
+                <td>${dataPro[i].taxces}</td>
+                <td>${dataPro[i].ads}</td>
+                <td>${dataPro[i].discount}</td>
+                <td>${dataPro[i].total}</td>
+                <td>${dataPro[i].count}</td>
+                <td>${dataPro[i].category}</td>
+                <td><button onclick="deleteproduct(${i})">Delete</button></td>
+                <td><button onclick="updateProduct(${i})">Update</button></td>
+            </tr>`;
+    }
+    document.getElementById("tbody").innerHTML = table;
+}
+showdata();
+
+
+// delete function 
+function deleteproduct(i){
+    console.log(i);
+    dataPro.splice(i, 1);
+    localStorage.products = JSON.stringify(dataPro);
+    showdata();
+}
+

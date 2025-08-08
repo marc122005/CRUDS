@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUDS</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="curd">
@@ -15,18 +16,42 @@
         <div class="input">
             <input type="text" placeholder="title" id="title">
             <div class="price">
-                <input type="number" placeholder="price" id="price">
-                <input type="number" placeholder="taxces" id="taxces">
-                <input type="number" placeholder="ads" id="ads">
-                <input type="number" placeholder="discount" id="discount">
-                <small id="total">792369</small>
+                <input type="number" onkeyup="gettotal()" placeholder="price" id="price">
+                <input type="number" onkeyup="gettotal()" placeholder="taxces" id="taxces">
+                <input type="number" onkeyup="gettotal()" placeholder="ads" id="ads">
+                <input type="number" onkeyup="gettotal()" placeholder="discount" id="discount">
+                <small id="total"></small>
             </div>
             <input type="number" placeholder="count" id="count">
             <input type="text" placeholder="category" id="category">
             <button id="submit">create</button>
         </div>
+        <div class="outputs">
+            <div class="searchblock">
+                <input type="text" placeholder="search" name="search" id="search">
+                <button id="search-t">search by title</button>
+                <button id="search-c">search by category</button>
+            </div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Tax</th>
+                    <th>Ads</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                    <th>Count</th>
+                    <th>Category</th>
+                    <th>update</th>
+                    <th>delete</th>
+                </tr>
+                <tbody id="tbody">
+                    <!-- Data will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </div>
     </div>
-
     <script src="js/test.js"></script>
 </body>
 </html>
