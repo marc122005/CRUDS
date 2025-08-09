@@ -7,6 +7,8 @@ let ads = document.getElementById("ads");
 let discount = document.getElementById("discount");
 let count = document.getElementById("count");
 let submit = document.getElementById("submit");
+let mood = "create";
+let indexupdate;
 
 function gettotal(){
     console.log("gettotal function called");
@@ -38,8 +40,8 @@ if(localStorage.getItem("products") == null){
 }
 
 submit.onclick = function(){
-    if(title.value != "" && price.value != "" && taxces.value != "" && ads.value != "" && discount.value != "" && count.value != "" && category.value != ""){
-        dataPro.push({
+    if(title.value != "" && price.value != ""){
+        let newpro ={
             title: title.value,
             price: price.value,
             taxces: taxces.value,
@@ -48,7 +50,21 @@ submit.onclick = function(){
             discount: discount.value,
             count: count.value,
             category: category.value
-        });
+        };
+        if(mood === "create"){
+            if(newpro.count > 1){
+            for(let i = 0; i < newpro.count; i++){
+                dataPro.push(newpro);}
+            }else{
+                dataPro.push(newpro);
+            }
+        }else{
+            dataPro[indexupdate] = newpro;
+
+        }
+        
+
+
         localStorage.setItem("products", JSON.stringify(dataPro));
         console.log(dataPro);
         cleardata();
@@ -72,7 +88,7 @@ function showdata() {
                 <td>${dataPro[i].count}</td>
                 <td>${dataPro[i].category}</td>
                 <td><button onclick="deleteproduct(${i})">Delete</button></td>
-                <td><button onclick="updateProduct(${i})">Update</button></td>
+                <td><button onclick="updateproduct(${i})">Update</button></td>
             </tr>`;
     }
     document.getElementById("tbody").innerHTML = table;
@@ -103,4 +119,20 @@ function deletall(){
             dataPro.splice(0, dataPro.length);
             localStorage.setItem("products", JSON.stringify(dataPro));
             showdata();
+}
+
+// update function
+function updateproduct(i){
+    title.value = dataPro[i].title;
+    price.value = dataPro[i].price;
+    taxces.value = dataPro[i].taxces;
+    ads.value = dataPro[i].ads;
+    discount.value = dataPro[i].discount;
+    gettotal();
+    count.style.display = "none";
+    submit.innerHTML = "update";
+    mood = "update";
+    category.value = dataPro[i].category;
+    indexupdate = i;
+
 }
