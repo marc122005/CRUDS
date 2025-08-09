@@ -177,6 +177,7 @@ function search(value){
                 </tr>`;
         }
     }
+    document.getElementById("tbody").innerHTML = table;
     }else{
         let table = '';
         for (let i = 0; i < dataPro.length; i++) {
@@ -197,6 +198,6 @@ function search(value){
                 </tr>`;
             }
         }
+        document.getElementById("tbody").innerHTML = table;
     }
-    document.getElementById("tbody").innerHTML = table;
 }
