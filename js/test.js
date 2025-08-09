@@ -10,6 +10,7 @@ let submit = document.getElementById("submit");
 let mood = "create";
 let indexupdate;
 
+// get total function
 function gettotal(){
     console.log("gettotal function called");
     if(price.value != "" ){
@@ -20,7 +21,7 @@ function gettotal(){
         total.style.backgroundColor = "red";
     }
 }
-
+//clear data function
 function cleardata(){
     title.value = "";
     price.value = "";
@@ -60,7 +61,9 @@ submit.onclick = function(){
             }
         }else{
             dataPro[indexupdate] = newpro;
-
+            mood = "create";
+            submit.innerHTML = "Create";
+            count.style.display = "block";
         }
         
 
@@ -134,5 +137,8 @@ function updateproduct(i){
     mood = "update";
     category.value = dataPro[i].category;
     indexupdate = i;
-
+    scroll({
+        top: 0,
+        behavior: "smooth",
+    })
 }
