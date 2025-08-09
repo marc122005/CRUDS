@@ -142,3 +142,61 @@ function updateproduct(i){
         behavior: "smooth",
     })
 }
+//search function
+let searchmood = "title";
+function getsearchmood(id){
+    if (id == "search-t"){
+        searchmood = "title";
+        document.getElementById("search").placeholder = "Search by title";
+    }else{
+        searchmood = "category";
+        document.getElementById("search").placeholder = "Search by category";
+    }
+    console.log(searchmood);
+
+}
+function search(value){
+    console.log(value);
+    if (searchmood == "title" ) {
+        let table = '';
+        for (let i = 0; i < dataPro.length; i++) {
+            if(dataPro[i][searchmood].includes(value.toLowerCase())){
+                table += `
+                    <tr>
+                    <td>${i + 1}</td>
+                    <td>${dataPro[i].title}</td>
+                    <td>${dataPro[i].price}</td>
+                    <td>${dataPro[i].taxces}</td>
+                    <td>${dataPro[i].ads}</td>
+                    <td>${dataPro[i].discount}</td>
+                    <td>${dataPro[i].total}</td>
+                    <td>${dataPro[i].count}</td>
+                    <td>${dataPro[i].category}</td>
+                    <td><button onclick="deleteproduct(${i})">Delete</button></td>
+                    <td><button onclick="updateproduct(${i})">Update</button></td>
+                </tr>`;
+        }
+    }
+    }else{
+        let table = '';
+        for (let i = 0; i < dataPro.length; i++) {
+            if(dataPro[i][searchmood].includes(value.toLowerCase())){
+                table += `
+                    <tr>
+                    <td>${i + 1}</td>
+                    <td>${dataPro[i].title}</td>
+                    <td>${dataPro[i].price}</td>
+                    <td>${dataPro[i].taxces}</td>
+                    <td>${dataPro[i].ads}</td>
+                    <td>${dataPro[i].discount}</td>
+                    <td>${dataPro[i].total}</td>
+                    <td>${dataPro[i].count}</td>
+                    <td>${dataPro[i].category}</td>
+                    <td><button onclick="deleteproduct(${i})">Delete</button></td>
+                    <td><button onclick="updateproduct(${i})">Update</button></td>
+                </tr>`;
+            }
+        }
+    }
+    document.getElementById("tbody").innerHTML = table;
+}

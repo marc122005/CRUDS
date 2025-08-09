@@ -28,9 +28,9 @@
         </div>
         <div class="outputs">
             <div class="searchblock">
-                <input type="text" placeholder="search" name="search" id="search">
-                <button id="search-t">search by title</button>
-                <button id="search-c">search by category</button>
+                <input type="text" onkeyup="search(this.value)" placeholder="search" name="search" id="search">
+                <button onclick="getsearchmood(this.id)" id="search-t">search by title</button>
+                <button onclick="getsearchmood(this.id)" id="search-c">search by category</button>
             </div>
             <div id="deletall">
                 
