@@ -56,6 +56,7 @@ submit.onclick = function(){
     }
 }
 
+//show data function 
 function showdata() {
     let table = '';
     for (let i = 0; i < dataPro.length; i++) {
@@ -75,11 +76,21 @@ function showdata() {
             </tr>`;
     }
     document.getElementById("tbody").innerHTML = table;
+
+    let deletall = document.getElementById("deletall");
+    if(dataPro.length > 0 ){
+        deletall.innerHTML = `
+        <button onclick="deletall()">Delete All</button>
+        `;
+    }else{
+        deletall.innerHTML = "";
+    }
+
 }
 showdata();
 
 
-// delete function 
+// delete function product 
 function deleteproduct(i){
     console.log(i);
     dataPro.splice(i, 1);
@@ -87,3 +98,9 @@ function deleteproduct(i){
     showdata();
 }
 
+// delete all products 
+function deletall(){
+            dataPro.splice(0, dataPro.length);
+            localStorage.setItem("products", JSON.stringify(dataPro));
+            showdata();
+}
