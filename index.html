@@ -27,8 +27,9 @@
             <button id="submit">create</button>
         </div>
         <div class="outputs">
+                            <input type="text" onkeyup="search(this.value)" placeholder="search" name="search" id="search">
+
             <div class="searchblock">
-                <input type="text" onkeyup="search(this.value)" placeholder="search" name="search" id="search">
                 <button onclick="getsearchmood(this.id)" id="search-t">search by title</button>
                 <button onclick="getsearchmood(this.id)" id="search-c">search by category</button>
             </div>

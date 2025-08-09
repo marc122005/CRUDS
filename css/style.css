@@ -59,9 +59,14 @@ button:hover{
     letter-spacing: 0.5px;
     cursor: pointer;
 }
+.searchblock{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
 #search-t, #search-c{
     width: 48%;
-    margin-right: 10px;
     border-radius: 15px;
     height: 40px;
 }
